@@ -1,0 +1,33 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="{% static 'css/login.css' %}" rel="stylesheet">
+    <title>Title</title>
+</head>
+<body>
+    <div class="main">
+        <div class="header">
+            <h1>Login!</h1>
+        </div>
+        <p></p>
+        <form action="{% url 'do_login' %}" method="post">
+            {% csrf_token %}
+            <ul class="right-form">
+                <h2>Login:</h2>
+                <li>
+                    {{ login_form.username }}
+                    <div class="clear"></div>
+                </li>
+                <li>
+                    {{ login_form.password }}
+                    <div class="clear"></div>
+                </li>
+                <input type="hidden" name="source_url" value="{{ request.META.HTTP_REFERER }}" />
+                <input type="submit" value="Login" />
+                <div class="clear"></div>
+            </ul>
+        </form>
+    </div>
+</body>
+</html>
